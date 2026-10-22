@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">跳转国际版b站</string>
+    <string name="xposed_description">让微信等应用里的 B 站分享链接跳到国际版哔哩哔哩。</string>
+</resources>

@@ -1,0 +1,16 @@
+# 构建产物
+build/
+dist/
+*.apk
+*.idsig
+*.dex
+
+# 签名材料（绝不入库）
+keys/
+*.jks
+*.keystore
+
+# 反编译 / 分析产物
+baksmali*.jar
+*_manifest.txt
+*.log

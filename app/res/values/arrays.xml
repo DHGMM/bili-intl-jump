@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 安装时 LSPosed 会据此推荐作用域，用户仍可自行增删 -->
+    <string-array name="xposed_scope">
+        <item>com.tencent.mm</item>
+        <item>com.tencent.mobileqq</item>
+        <item>com.tencent.tim</item>
+    </string-array>
+</resources>
