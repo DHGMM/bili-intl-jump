@@ -116,7 +116,7 @@ ANDROID_JAR=/path/to/android.jar \
 
 - 首次构建会自动生成签名证书到 `keys/`（自签名，仅测试用）；可用 `--unsigned` 只产出对齐包；
 - `app/stubs` 是 Xposed API 的**编译期桩**，只参与编译、不会进入 APK；
-- `ANDROID_JAR` 未设置时默认读取 `~/fanqie-module/.../android-34/android.jar`，可自行修改。
+- `android.jar` 查找顺序：`ANDROID_JAR` 环境变量 → `ANDROID_HOME` / `ANDROID_SDK_ROOT` 下的 `android-36/35/34/33`。
 
 ## 测试
 

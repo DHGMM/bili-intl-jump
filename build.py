@@ -23,10 +23,21 @@ BUILD = ROOT / "build"
 DIST = ROOT / "dist"
 KEYS = ROOT / "keys"
 
-SDK_JAR = Path(os.environ.get(
-    "ANDROID_JAR",
-    str(Path.home() / "fanqie-module/fanqie-module-main/android/platforms/android-34/android.jar"),
-))
+def find_android_jar():
+    """依次尝试 ANDROID_JAR、ANDROID_HOME / ANDROID_SDK_ROOT 下的平台包。"""
+    explicit = os.environ.get("ANDROID_JAR")
+    if explicit:
+        return Path(explicit)
+    sdk = os.environ.get("ANDROID_HOME") or os.environ.get("ANDROID_SDK_ROOT")
+    if sdk:
+        for api in ("android-36", "android-35", "android-34", "android-33"):
+            candidate = Path(sdk) / "platforms" / api / "android.jar"
+            if candidate.is_file():
+                return candidate
+    return None
+
+
+SDK_JAR = find_android_jar()
 
 VERSION = "1.5"
 VERSION_CODE = "6"
@@ -65,8 +76,12 @@ def check_deps() -> bool:
         ok = ok and bool(path)
     za = zipalign_path()
     print(f"  {'zipalign':<10} {za or '缺失'}")
-    print(f"  {'android.jar':<10} {SDK_JAR} {'OK' if SDK_JAR.is_file() else '缺失'}")
-    ok = ok and bool(za) and SDK_JAR.is_file()
+    if SDK_JAR is None:
+        print(f"  {'android.jar':<10} 缺失（设置 ANDROID_JAR 或 ANDROID_HOME）")
+        ok = False
+    else:
+        print(f"  {'android.jar':<10} {SDK_JAR} {'OK' if SDK_JAR.is_file() else '缺失'}")
+        ok = ok and SDK_JAR.is_file()
     return ok
 
 
