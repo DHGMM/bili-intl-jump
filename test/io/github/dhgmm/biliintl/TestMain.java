@@ -1,4 +1,4 @@
-package com.example.biliintl;
+package io.github.dhgmm.biliintl;
 
 import android.content.ComponentName;
 import android.content.Intent;

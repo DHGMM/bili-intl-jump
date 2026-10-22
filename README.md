@@ -125,11 +125,11 @@ ANDROID_JAR=/path/to/android.jar \
 ```bash
 JAR=$ANDROID_JAR
 javac --release 8 -classpath "$JAR" -d build/test-classes \
-  app/src/com/example/biliintl/BiliIntent.java test/com/example/biliintl/TestMain.java
-d8 --min-api 24 --lib "$JAR" --output build/test-dex build/test-classes/com/example/biliintl/*.class
+  app/src/io/github/dhgmm/biliintl/BiliIntent.java test/io/github/dhgmm/biliintl/TestMain.java
+d8 --min-api 24 --lib "$JAR" --output build/test-dex build/test-classes/io/github/dhgmm/biliintl/*.class
 # 需要 root，把 dex 放到设备上执行
 su -c "cp build/test-dex/classes.dex /data/local/tmp/bilitest.dex"
-su -c "CLASSPATH=/data/local/tmp/bilitest.dex /system/bin/app_process /system/bin com.example.biliintl.TestMain"
+su -c "CLASSPATH=/data/local/tmp/bilitest.dex /system/bin/app_process /system/bin io.github.dhgmm.biliintl.TestMain"
 ```
 
 预期输出：`PASS=20 FAIL=0`。
@@ -145,7 +145,7 @@ app/
   AndroidManifest.xml     模块清单、LSPosed 元数据、<queries>
   assets/xposed_init      入口类（单行）
   res/values/             名称、描述、推荐作用域
-  src/com/example/biliintl/
+  src/io/github/dhgmm/biliintl/
     XposedInit.java       入口，按进程安装
     Hooks.java            所有 hook 安装与参数改写
     BiliIntent.java       链接识别 / 包名与组件改写 / 深链归一化

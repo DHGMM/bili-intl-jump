@@ -1,4 +1,4 @@
-package com.example.biliintl;
+package io.github.dhgmm.biliintl;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
@@ -11,7 +11,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
  */
 public final class XposedInit implements IXposedHookLoadPackage {
 
-    private static final String SELF = "com.example.biliintl";
+    private static final String SELF = "io.github.dhgmm.biliintl";
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
